@@ -1,8 +1,5 @@
 from django.shortcuts import render
 from .models import Book
-from django.views.generic.detail import DetailView
-
-# Create your views here.
 
 # Create your views here.
 def list_books(request):
@@ -19,3 +16,32 @@ class LibraryDetailView(DetailView):
     context_object_name = 'library'
 
 
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.shortcuts import render, redirect
+
+def user_login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("home")  # Change "home" to your actual home page name
+    else:
+        form = AuthenticationForm()
+    return render(request, "login.html", {"form": form})
+
+def user_logout(request):
+    logout(request)
+    return render(request, "logout.html")
+
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Automatically log the user in after registration
+            return redirect("home")  # Redirect to home page
+    else:
+        form = UserCreationForm()
+    return render(request, "register.html", {"form": form})

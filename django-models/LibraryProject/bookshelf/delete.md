@@ -1,4 +1,3 @@
-from bookshelf.models import Book
 <!-- TO RETRIEVE THE BOOK -->
 book = Book.objects.get(title="Nineteen Eighty-Four")
 
