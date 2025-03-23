@@ -1,5 +1,4 @@
-from django.urls import path, include
-from .views import BookList, BookViewSet
+from django.urls import path, include from .views import BookList, BookViewSet
 from rest_framework.routers import DefaultRouter
 from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
