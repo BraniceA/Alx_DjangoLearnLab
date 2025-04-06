@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from django.forms import widgets
 from taggit.forms import TagWidget  # Import the TagWidget from taggit
 
 class UserRegisterForm(UserCreationForm):
@@ -33,8 +34,9 @@ class CommentForm(forms.ModelForm):  # Create a form for Comment
 # from taggit.models import Tag
 
 class PostForm(forms.ModelForm):
-    tags = forms.CharField(widget=TagWidget())  # Use TagWidget for the tags field
-
+    content = forms.CharField(widget=widgets.Textarea(attrs={'rows': 5, 'cols': 40}))  # Use Textarea widget for content
+    tags = forms.CharField(widget=TagWidget())  # Use TagWidget for tags field
+widgets
     class Meta:
         model = Post
         fields = ['title', 'content', 'tags']
