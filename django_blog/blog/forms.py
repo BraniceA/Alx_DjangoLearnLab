@@ -2,6 +2,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django import forms
+from taggit.forms import TagWidget  # Import the TagWidget from taggit
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)  # Add an email field to the registration form
@@ -31,6 +33,8 @@ class CommentForm(forms.ModelForm):  # Create a form for Comment
 # from taggit.models import Tag
 
 class PostForm(forms.ModelForm):
+    tags = forms.CharField(widget=TagWidget())  # Use TagWidget for the tags field
+
     class Meta:
         model = Post
-        fields = ['title', 'content', 'tags']  # include tags field
+        fields = ['title', 'content', 'tags']
