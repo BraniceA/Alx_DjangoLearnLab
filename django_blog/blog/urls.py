@@ -14,12 +14,12 @@ urlpatterns = [
     # Custom registration view
     path('register/', register, name='register'),
     path('profile/', auth_views.LoginView.as_view(template_name='blog/profile.html'), name='profile'),  # Profile page after login
-    path('posts/', PostListView.as_view(), name='post-list'),
-    path('posts/new/', PostCreateView.as_view(), name='post-create'),
-    path('posts/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
-    path('posts/<int:pk>/edit/', PostUpdateView.as_view(), name='post-update'),
-    path('posts/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
-    path('posts/<int:post_id>/comments/new/', add_comment, name='add-comment'),
+    path('post/', PostListView.as_view(), name='post-list'),
+    path('post/new/', PostCreateView.as_view(), name='post-create'),
+    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
+    path('post/<int:pk>/edit/', PostUpdateView.as_view(), name='post-update'),
+    path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
+    path('post/<int:post_id>/comments/new/', add_comment, name='add-comment'),
     path('comments/<int:pk>/edit/', EditCommentView.as_view(), name='edit-comment'),
     path('comments/<int:pk>/delete/', DeleteCommentView.as_view(), name='delete-comment'),
     path('search/', SearchResultsView.as_view(), name='search_results'),

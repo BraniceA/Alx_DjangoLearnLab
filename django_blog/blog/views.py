@@ -109,7 +109,7 @@ from .models import Post, Comment
 from .forms import CommentForm
 
 @login_required  # Ensure user is logged in
-def add_comment(request, post_id):
+def CommentCreateView(request, post_id):
     post = get_object_or_404(Post, id=post_id)  # Get the post object
     if request.method == "POST":
         form = CommentForm(request.POST)  # Bind form to POST data
@@ -123,7 +123,7 @@ def add_comment(request, post_id):
         form = CommentForm()
     return render(request, 'blog/add_comment.html', {'form': form, 'post': post})
 
-class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Comment
     form_class = CommentForm
     template_name = 'blog/edit_comment.html'
@@ -135,7 +135,7 @@ class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         comment = self.get_object()
         return self.request.user == comment.author
 
-class DeleteCommentView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Comment
     template_name = 'blog/delete_comment.html'
 
