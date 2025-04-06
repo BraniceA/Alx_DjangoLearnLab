@@ -1,0 +1,79 @@
+Django Blog Project - Documentation
+
+User Authentication
+
+- Users can register using a form that includes a username, password, and email.
+- Users can log in and log out using Django's built-in views.
+- A profile page is available where users can update their details.
+
+Templates:
+- login.html
+- logout.html
+- register.html
+- profile.html
+
+Blog Post Management (CRUD)
+
+- ListView shows all blog posts.
+- DetailView shows individual blog posts.
+- CreateView lets authenticated users create new posts.
+- UpdateView allows post authors to edit their posts.
+- DeleteView allows post authors to delete their posts.
+
+Forms:
+- PostForm includes title, content, and tags fields.
+
+URLs:
+- /posts/ for list of posts
+- /posts/<int:pk>/ for viewing a single post
+- /posts/new/ for creating a post
+- /posts/<int:pk>/edit/ for editing a post
+- /posts/<int:pk>/delete/ for deleting a post
+
+Comment System
+
+- All comments for a post are displayed on the post detail page.
+- Authenticated users can add, edit, and delete their own comments.
+
+Comment Model Fields:
+- post (ForeignKey to Post)
+- author (ForeignKey to User)
+- content (Text)
+- created_at (DateTime)
+- updated_at (DateTime)
+
+Forms:
+- CommentForm
+
+URLs:
+- /posts/<int:post_id>/comments/new/ to add a comment
+- /comments/<int:pk>/edit/ to edit a comment
+- /comments/<int:pk>/delete/ to delete a comment
+
+Tagging
+
+- Posts can have tags using a many-to-many relationship.
+- django-taggit is used for managing tags.
+- Tags are added in PostForm as comma-separated values.
+
+URLs:
+- /tags/<str:tag>/ to filter posts by tag
+
+Search Functionality
+
+- Users can search posts by title, content, or tags.
+- A search bar is available.
+- Search is handled using Django's Q objects.
+
+URLs:
+- /search/?q=keyword to perform a search
+
+Permissions and Security
+
+- Only logged-in users can create posts and comments.
+- Only the author of a post or comment can edit or delete it.
+- All forms include CSRF protection.
+- Passwords are hashed securely by Django.
+
+
+

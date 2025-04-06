@@ -1,0 +1,17 @@
+<!-- This template extends the 'blog/base.html' file, inheriting its structure and layout. -->
+{% extends 'blog/base.html' %}
+<!-- This block defines the content that will replace the 'content' block in the base template. -->
+{% block content %} 
+    <h2>Register</h2>
+    <!-- Starts a form that uses the POST method to securely send data to the server. -->
+    <form method="POST">
+        {% csrf_token %}  <!-- Includes a CSRF token for security to prevent cross-site request forgery attacks. -->
+        {{ form.as_p }}   <!-- Renders the Django form passed from the view as HTML, with each field wrapped in <p> tags. -->
+        <!-- A submit button labeled 'Register' to submit the form. -->
+        <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+    <!-- Displays a message for users who already have an account, with a link to the login page. 
+         The {% url 'login' %} tag dynamically generates the URL for the login view. -->
+
+{% endblock %}

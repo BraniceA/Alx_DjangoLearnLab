@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Search Results for "{{ request.GET.q }}"</h2>
+  {% for post in object_list %}
+    <h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
+    <p>{{ post.content|truncatechars:200 }}</p>
+  {% empty %}
+    <p>No results found.</p>
+  {% endfor %}
+{% endblock %}
